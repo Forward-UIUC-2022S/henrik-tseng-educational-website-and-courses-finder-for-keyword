@@ -2,20 +2,20 @@
 Return the filtered useful educational resources based on input keyword and filtering conditions from users
 ## Functional Design(primary version, subject to change)
 ### Module: DataCollection
-1. Function: SemanticParsing
+1. Function: SemanticParsing(extra)
    - Description: Simulate the real environment of a google search, respond to any strings a user may type in
    - Input:
      - user_demand: arbitrary input strings that a user may input for educational resources google search
    - Output:
      - keywords: list of keywords for related educational resources finding according to user input string
-     - conditions: filtering conditions for returned value according to user input string
+     - (extra)conditions: filtering conditions for returned value according to user input string
    - Functionality: Paraphrase the key info of what user what from input string, parse them out for ranking and filtering separately
      
 2. Function: DataCollection
    - Description: The search process for resources gathering
    - Input:
      - keywords: list of keywords for related educational resources finding
-     - conditions: filtering conditions for returned values
+     - (extra)conditions: filtering conditions for returned values
    - Output:
      - raw_data: unprocessed related resources found through the search, stored in lists for future processing
    - Functionality: Obtain searching resources from Google Search with keywords
@@ -39,17 +39,17 @@ Return the filtered useful educational resources based on input keyword and filt
    - Functionality: Provide the ranking of usefulness for all resources, used as judgment criteria in later module
 
 ### Module: ResultFiltering
-1. Function: ConditionFiltering
+1. Function: ConditionFiltering(extra)
    - Description: First step of filtering the resources
    - Input:
      - ripe_data: processed related resources found through the search, format friendly for later modules
-     - conditions: filtering conditions for returned value according to user input string
+     - (extra)conditions: filtering conditions for returned value according to user input string
    - Output:
      - filtered_data: list of resources that satisfy all conditions from the user
    - Functionality: Filter the resources according to input conditions from user that parsed above
 
 2. Function: RankingFiltering
-   - Description: Second step of filtering the resources
+   - Description: Second step of filtering the resources, sort the resources according to usefulness rank
    - Input:
      - filtered_data: list of resources that satisfy all conditions from the user
      - rank: a list that contains the ranking for resources of the same index in ripe_data accordingly
