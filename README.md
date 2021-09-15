@@ -58,8 +58,8 @@ Return the filtered useful educational resources based on input keyword and filt
    - Functionality: Sort the primarily filtered resources based on usefulness ranking produced in UsefulnessRanking module
 
 3. Function: DisplayResult
-   - Description: 
-   - Input: Final step, show user the filtered results
+   - Description: Final step, show user the filtered results
+   - Input: 
      - filtered_useful_data: list of sorted resources that satisfy all conditions from the user and in the descending order of usefulness ranking
      - Top_X : integer, meaning to get the topX of resources
    - Output:
