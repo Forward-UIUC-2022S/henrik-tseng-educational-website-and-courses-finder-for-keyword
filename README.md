@@ -65,3 +65,44 @@ Return the filtered useful educational resources based on input keyword and filt
    - Output:
      - Result: Final resources that best fit user command
    - Functionality: Return and display the needed topX results
+
+
+## Algorithm Design(primary version, subject to change)
+### Part 1: Gathering related educational resources(diagram incoming)
+#### Introduction: 
+This part is for related resources gathering. Start with a rough collection on Google, followed by concept identification (and also a naive concept summarization) to filter out resources with low correlation, shrink the dataset scale to make convenience for later processing.
+
+#### Implementation:
+Suppose we have an input keyword W, we gather the related educational resources through following process.
+1. Complete Google search and obtain all results that contain W in their text content.
+2. For every single result, do following steps in order:
+   - Do TextRank(my previous implementation) upon the text content to find weighted keywords(or key phrases, the same below) through built weighted graph.
+   - Do frequency count within the text content for all keywords in weight.
+   - Weighting the two results from above 2 steps to get the Final Keyword List(FKL) with weight updated weight attached.
+   - Keep the result if obtained FKL contains W, otherwise disgard it.
+
+### Part 2: Usefulness ranking(diagram incoming)
+#### Introduction: 
+This part is to rank the usefulness of the resources selected in previous part, and return the resources to users sorted according to usefulness ranks.
+
+#### Implementation:
+This part only works on results survive from previous part.
+1. Add all words in FKLs of remaining results into a corpus C without duplicates.
+2. For all keywords in C, set up a matrix A, where Aij is the weight of ith keyword in jth result's FKL, here the order of i,j does not matter.
+3. Do singular value decomposition(SVD) for A :</br>
+![image](https://user-images.githubusercontent.com/66361320/134427181-4a6829cb-8bb9-46a7-a4d4-def8722ffbde.png)
+4. Dimension reduction for A: only keep the k highest eigenvalues in Σ and set all other values to 0, then multiply back to get:(Notice that Ak here is for future extra use)
+![image](https://user-images.githubusercontent.com/66361320/134428069-bab4a12f-56cf-4ed2-87b4-6d3500484257.png)
+5. Sort Σk according to eigenvalues and fetch the highest n values, find corresponding keywords(with eigenvalue as weight) and form a set K
+6. Each result calculate total score, which is the sum of weight of word i, where i ∈ its FKL and i ∈ K. 
+7. Sort the results according to their total scores, which is actually the usefulness ranking, and return to the users.
+
+
+## References
+### Dataset
+To be updated
+
+### Papers
+Jorge Villalon & Rafael A. Calvo. (2009).Concept Extraction from Student Essays, Towards Concept Map Mining: 
+- Main page: https://ieeexplore.ieee.org/abstract/document/5194208
+- pdf version from Google scholar: https://d1wqtxts1xzle7.cloudfront.net/50645682/Concept_Extraction_from_Student_Essays_T20161130-19200-de091o-with-cover-page-v2.pdf?Expires=1632349340&Signature=JAqnsyiLEiEE17k4TalYoQqx8YHdOrXi4qgXJcYwZgcrCOG0sgSzdYq1l-220nl4MdlkCuYShihyN2qGuZDctLnSCpasTCKgveSy1XJoewo1Ar0gbe3CmYhkXhdXxAnp2HIbiYtL9dClxTzm0xWZTQPEmn8FviRRCKlOrIZcfoVU2ipsWoDRA6cik6wTzLVw4dZQcJgMprVlsk4HqgJy1Dmj0pOIKrtKtMUyvFXjYEH0EYRtmiBheAhrIyNJ0eBE~FmapNFj88vMarR9xcZZQcVsCsp6w0Bz0A-d~wuINTEWQ3CV95dW1IFs91dZ4xPkBXtrrCpmkYoFgbHkQn2fXg__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
