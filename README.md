@@ -81,8 +81,11 @@ Then judge usefulness based on the following, every single point satisfied will 
 Some extra criteria I think is necessary:
    1. User comments, rankings, page view, share or reprint times, favorite perventage. 
    2. Release time, publisher
+</br>
 
-Blocked down paper, which might be useful for me but have no chance to read:https://ieeexplore.ieee.org/abstract/document/9529407
+Blocked down paper, which might be useful for me but have no chance to read:https://ieeexplore.ieee.org/abstract/document/9529407</br>
+
+Funny thing is, I notice that all judgement made above can be implemented simply by several 'if's, rather than designing a brilliant algorithm or supervised classifier.
 
 
 
