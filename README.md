@@ -68,7 +68,27 @@ Return the filtered useful educational resources based on input keyword and filt
 
 
 ## Algorithm Design(primary version, subject to change)
-### Part 1: Gathering related educational resources(diagram incoming)
+### (New version)only naive primary thought, no reference
+Using a crawler to copy down the source code of html page for every individual google search result according to input keyword.</br>
+Then judge usefulness based on the following, every single point satisfied will add up score for that result, and different point may provide different score:</br>
+1. The url of that result, is it ended with edu, org? (Obviously not all resources are provided on .edu or .org, but this should give higher preference）
+2. The title label in html，such'course', 'class' ,'lecture', 'tutorial', 'exercise', 'textbook', 'handout' etc.
+3. The 'audio','video','pdf' labels in html，a resource with picture or video or pdf can be much more useful than plain texts. 
+   - Further judgement on the 'source' tag under 'video' tag or others, and check the 'src' string to fing out the name of audio, video or pdf to judge whether it is useful(based on the comparison to keyword)
+   - Further judgement on the descriptive texts around the video, audio or pdf to find out how relevant it is to the keyword, rather than maybe an ad.
+4. Diagram, same as 3
+
+Some extra criteria I think is necessary:
+   1. User comments, rankings, page view, share or reprint times, favorite perventage. 
+   2. Release time, publisher
+
+Blocked down paper, which might be useful for me but have no chance to read:https://ieeexplore.ieee.org/abstract/document/9529407
+
+
+
+
+
+### (Old version)Part 1: Gathering related educational resources(diagram incoming)
 #### Introduction: 
 This part is for related resources gathering. Start with a rough collection on Google, followed by concept identification (and also a naive concept summarization) to filter out resources with low correlation, shrink the dataset scale to make convenience for later processing.
 
