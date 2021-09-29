@@ -72,7 +72,7 @@ Return the filtered useful educational resources based on input keyword and filt
 Using a crawler to copy down the source code of html page for every individual google search result according to input keyword.</br>
 Then judge usefulness based on the following, every single point satisfied will add up score for that result, and different point may provide different score:</br>
 1. The url of that result, is it ended with edu, org? (Obviously not all resources are provided on .edu or .org, but this should give higher preference）
-2. The title label in html，such'course', 'class' ,'lecture', 'tutorial', 'exercise', 'textbook', 'handout' etc.
+2. The title label in html，such as'course', 'class' ,'lecture', 'tutorial', 'exercise', 'textbook', 'handout', 'guideline' etc.(But should all contain keyword)
 3. The 'audio','video','pdf' labels in html，a resource with picture or video or pdf can be much more useful than plain texts. 
    - Further judgement on the 'source' tag under 'video' tag or others, and check the 'src' string to fing out the name of audio, video or pdf to judge whether it is useful(based on the comparison to keyword)
    - Further judgement on the descriptive texts around the video, audio or pdf to find out how relevant it is to the keyword, rather than maybe an ad.
