@@ -1,6 +1,6 @@
 # Educational-website-and-courses-finder-for-keyword
 Return the filtered useful educational resources based on input keyword and filtering conditions from users
-## Functional Design(primary version, subject to change)
+## Functional Design(primary version)
 ### Module: DataCollection
 1. Function: SemanticParsing(extra)
    - Description: Simulate the real environment of a google search, respond to any strings a user may type in
@@ -67,7 +67,7 @@ Return the filtered useful educational resources based on input keyword and filt
    - Functionality: Return and display the needed topX results
 
 
-## Algorithm Design(primary version, subject to change)
+## Algorithm Design(primary version)
 ### (New version)only naive primary thought, no reference
 Using a crawler to copy down the source code of html page for every individual google search result according to input keyword.</br>
 Then judge usefulness based on the following, every single point satisfied will add up score for that result, and different point may provide different score:</br>
@@ -86,10 +86,6 @@ Some extra criteria I think is necessary:
 Blocked down paper, which might be useful for me but have no chance to read:https://ieeexplore.ieee.org/abstract/document/9529407</br>
 
 Funny thing is, I notice that all judgement made above can be implemented simply by several 'if's, rather than designing a brilliant algorithm or supervised classifier.
-
-
-
-
 
 ### (Old version)Part 1: Gathering related educational resources(diagram incoming)
 #### Introduction: 
