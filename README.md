@@ -15,20 +15,19 @@ Return the filtered useful educational resources based on input keyword and filt
    - Input:
      - raw_data: unprocessed related resources found through the search, stored in lists for future processing
    - Output:
-     - ripe_data: processed related resources found through the search, format friendly for later modules
+     - processed_data: processed related resources found through the search, format friendly for later modules
    - Functionality: Turn the rough format of resources into the format and syntax that later modules want
 
 ### Module: UsefulnessRanking(This should be a large module, with many incoming supplement functions)
 1. Function: ResourceRanking(Firstly implement by 'many-if')
    - Description: Rank the usefulness of collected resources
    - Input:
-     - ripe_data: processed related resources found through the search, format friendly for later modules
+     - processed_data: processed related resources found through the search, format friendly for later modules
    - Output:
      - rank: a list that contains the ranking for resources of the same index in ripe_data accordingly
    - Functionality: Provide the ranking of usefulness for all resources, used as judgment criteria in later module
 
-### Module: FurtherResearch
-1. Function: FurtherResearch(extra)
+2. Function: FurtherResearch(extra)
    - Description: For each of the classified result, track some furthur features, include but not limited to user comments, user rankings, page view, share or reprint times, favorite perventage, release time, publisher etc..
    - Input:
      - ripe_data: processed related resources found through the search, format friendly for later modules
@@ -43,7 +42,7 @@ Return the filtered useful educational resources based on input keyword and filt
 ![172eee9c7336938393c2ec712c2ff97](https://user-images.githubusercontent.com/66361320/135891667-90540080-ca48-456f-bb52-f97ef9aeb3da.png)
 
 2. Judge usefulness based on the following features, every single point satisfied will add up score for that result, and different point may provide different score:</br>
-![5e7b2f71c15c5af672ead1bc16d4e77](https://user-images.githubusercontent.com/66361320/135892409-ff42c6b7-c517-4b49-b8c6-83cfae49f26a.png)
+![65fcdbba14250f5ec69c0f8a4c3a253](https://user-images.githubusercontent.com/66361320/137957846-cd0070b5-14ce-4db9-b9ce-49b44cf354d7.png)
    - (1) Whether the url of that result is ended with edu, org (Obviously not all resources are provided on .edu or .org, but this should give higher preference）
    - (2) The title label in html，such as'course', 'class' ,'lecture', 'tutorial', 'exercise', 'textbook', 'handout', 'guideline' etc.(But should all contain keyword)
    - (3) The 'audio','video','pdf' labels in html，a resource with picture or video or pdf can be much more useful than plain texts. 
