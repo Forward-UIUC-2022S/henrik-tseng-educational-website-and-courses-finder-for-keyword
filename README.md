@@ -30,7 +30,7 @@ Return the filtered useful educational resources based on input keyword and filt
 2. Function: FurtherResearch(extra)
    - Description: For each of the classified result, track some furthur features, include but not limited to user comments, user rankings, page view, share or reprint times, favorite perventage, release time, publisher etc..
    - Input:
-     - ripe_data: processed related resources found through the search, format friendly for later modules
+     - processed_data: processed related resources found through the search, format friendly for later modules
      - (extra)conditions: filtering conditions for returned value according to user input string
    - Output:
      - filtered_data:  a list that contains the further ranking for resources of the same index in ripe_data accordingly
