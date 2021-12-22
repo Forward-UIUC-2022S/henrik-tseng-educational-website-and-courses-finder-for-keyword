@@ -97,11 +97,6 @@ Incoming
    - User comments, rankings, page view, share or reprint times, favorite perventage. 
    - Release time, publisher
 
-## Detailed Implementation Steps
-1. By doing manual work on the Internet, try to figure how well is for each existing feature, then modify or delete or supplement them
-2. Complete basic implementation by combining crawler and many-if functions
-3. Learn about how to build up and train a classifier, then fix step 2 into it.
-
 # Issues and Future Work
 
 * The website filter function still needs some further improvement to smartly clear out the duplicate websites or similar websites that is truly not useful. 
