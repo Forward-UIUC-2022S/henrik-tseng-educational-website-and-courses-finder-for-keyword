@@ -1,7 +1,50 @@
 # zicheng-ma-educational-website-and-courses-finder-for-keyword
 Return the filtered useful educational resources based on input keyword and filtering conditions from users
-## Functional Design(secondary version, subject to change)
-### Module: DataCollection
+# Setup
+
+## Dependencies
+```
+pip install -r requirements.txt
+```
+
+## File Structure
+```
+zicheng-ma-educational-website-and-courses-finder-for-keyword/
+    - requirements.txt
+    - README.md
+    - dataset/
+        -- data_labeling.xlsx
+        -- evaluation_keyword_list.txt
+        -- features_data.csv
+        -- keywords_training.txt
+    - src/
+        -- __init__.py
+        -- main.py
+        -- webpage_crawler.py
+        -- Train_Classifier.py
+        -- rf_classifier.py
+     - tests/
+        -- sample_result.png
+        -- sample_result.txt
+```
+
+## File Descriptions
+
+* ```dataset/data_labeling.xlsx```: 
+* ```dataset/evaluation_keyword_list.txt```: 
+* ```dataset/features_data.csv```: 
+* ```dataset/keywords_training.txt```: 
+* ```src/ __init__.py```: 
+* ```src/webpage_crawler.py```: 
+* ```src/main.py```: 
+* ```src/Train_Classifier.py```: 
+* ```src/rf_classifier.py```: 
+
+# Demo Video
+Incoming
+
+# Functional Design
+## Module: DataCollection
 1. Function: DataCollection
    - Description: The search process for resources gathering
    - Input:
@@ -18,7 +61,7 @@ Return the filtered useful educational resources based on input keyword and filt
      - processed_data: processed related resources found through the search, format friendly for later modules
    - Functionality: Turn the rough format of resources into the format and syntax that later modules want
 
-### Module: UsefulnessRanking(This should be a large module, with many incoming supplement functions)
+## Module: UsefulnessRanking
 1. Function: ResourceRanking(Firstly implement by 'many-if')
    - Description: Rank the usefulness of collected resources
    - Input:
@@ -36,8 +79,8 @@ Return the filtered useful educational resources based on input keyword and filt
      - filtered_data:  a list that contains the further ranking for resources of the same index in ripe_data accordingly
    - Functionality: Track all top results upon certain features for further usefulness evaluation
 
-## Algorithm Design(secondary version, subject to change)
-### (New version)only naive primary thought, no reference
+# Algorithm Design(secondary version, subject to change)
+## (New version)only naive primary thought, no reference
 1. Using a crawler to copy down the source code of html page for every individual google search result according to input keyword.</br>
 ![172eee9c7336938393c2ec712c2ff97](https://user-images.githubusercontent.com/66361320/135891667-90540080-ca48-456f-bb52-f97ef9aeb3da.png)
 
@@ -54,15 +97,23 @@ Return the filtered useful educational resources based on input keyword and filt
    - User comments, rankings, page view, share or reprint times, favorite perventage. 
    - Release time, publisher
 
-### Detailed Implementation Steps
+## Detailed Implementation Steps
 1. By doing manual work on the Internet, try to figure how well is for each existing feature, then modify or delete or supplement them
 2. Complete basic implementation by combining crawler and many-if functions
 3. Learn about how to build up and train a classifier, then fix step 2 into it.
 
+# Issues and Future Work
 
-## References
-### Dataset
-To be updated
+* The website filter function still needs some further improvement to smartly clear out the duplicate websites or similar websites that is truly not useful. 
+* Improve the situation that sometimes there will not be enough results returned by the program when applying the filter to it.
+* The internet and API issues are still instable. 
 
-### Papers
-Blocked down paper, which might be useful for me but have no chance to read:https://ieeexplore.ieee.org/abstract/document/9529407
+# References
+## Dataset
+Self-collected, attached in 'dataset' folder
+
+## Papers
+incoming:https://ieeexplore.ieee.org/abstract/document/9529407
+
+## APIs
+googlesearch API: https://python-googlesearch.readthedocs.io/en/latest/
