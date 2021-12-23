@@ -1,5 +1,5 @@
 # zicheng-ma-educational-website-and-courses-finder-for-keyword
-Return the filtered useful educational resources based on input keyword and filtering conditions from users
+This project will return the filtered useful educational resources based on input keyword and filtering conditions from users
 # Setup
 
 ## Dependencies
@@ -40,7 +40,7 @@ zicheng-ma-educational-website-and-courses-finder-for-keyword/
 * ```src/rf_classifier.py```: Used to train random forest classifier. (Users should modify the path for classifier training in this file)
 
 # Demo Video
-Incoming
+Google Drive: https://drive.google.com/file/d/1njDFgL8vB1uZiJqXHRxSSATe9LI4c3yn/view?usp=sharing
 
 # Functional Design
 ## Module: DataCollection
