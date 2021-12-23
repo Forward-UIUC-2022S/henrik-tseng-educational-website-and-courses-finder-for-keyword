@@ -30,57 +30,53 @@ zicheng-ma-educational-website-and-courses-finder-for-keyword/
 
 ## File Descriptions
 
-* ```dataset/data_labeling.xlsx```: 
-* ```dataset/evaluation_keyword_list.txt```: 
-* ```dataset/features_data.csv```: 
-* ```dataset/keywords_training.txt```: 
-* ```src/ __init__.py```: 
-* ```src/webpage_crawler.py```: 
-* ```src/main.py```: 
-* ```src/Train_Classifier.py```: 
-* ```src/rf_classifier.py```: 
+* ```dataset/data_labeling.xlsx```: Data set that used to train classifier
+* ```dataset/evaluation_keyword_list.txt```: keyword lists used for classifier evaluation
+* ```dataset/features_data.csv```: Primary gathered data
+* ```dataset/keywords_training.txt```: keyword lists used for classifier training
+* ```src/main.py```: The file connecting all other parts to make them work as a whole for users' convenience.(Users should mainly modify this file)
+* ```src/webpage_crawler.py```: Used for websites collecting
+* ```src/Train_Classifier.py```: Used to train GaussianNB classifier
+* ```src/rf_classifier.py```: Used to train random forest classifier. (Users should modify the path for classifier training in this file)
 
 # Demo Video
 Incoming
 
 # Functional Design
 ## Module: DataCollection
-1. Function: DataCollection
-   - Description: The search process for resources gathering
+1. Function: DataSearch(for user)
+   - Description: For a certain keyword, collect its features as data from first result page and secondary result page of google search. Similar functionality to DataSearch, but this one used for user input data collection, working on a much smaller scale.
    - Input:
-     - keywords: list of keywords for related educational resources finding
+     - keyword (string): a given keyword that would be featured
+     - result_num(integer): expected number of returned search results from user, default set to 10
+     - apply_filter(0 or 1): indicate whether to apply the filter to clear out similar results, 1 for yes, 0 for no.
+                                  Input by user, default set to 1
    - Output:
-     - raw_data: unprocessed related resources found through the search, stored in lists for future processing
-   - Functionality: Obtain searching resources from Google Search with keywords
+     - final_results_list(list): satisfied websites list
+     - final_features(list): all features collected from corresponding websites in 'final_results_list' for later classifier prediction
 
-2. Function: Preprocessing(For classifier)
-   - Description: Process the resources for later processing
+2. Function: DataCollection(for classifier)
+   - Description: For a certain keyword, collect its features as data from first result page and secondary result page of google search. Similar functionality to DataSearch, but this one used for large scale data collection to form a data set and train the classifier.
    - Input:
-     - raw_data: unprocessed related resources found through the search, stored in lists for future processing
-   - Output:
-     - processed_data: processed related resources found through the search, format friendly for later modules
-   - Functionality: Turn the rough format of resources into the format and syntax that later modules want
+     - keyword (string): a given keyword that would be featured
+     - result_num(integer): expected number of returned search results from user, default set to 10
+     - apply_filter(0 or 1): indicate whether to apply the filter to clear out similar results, 1 for yes, 0 for no.
+                                  Input by user, default set to 1
+
 
 ## Module: UsefulnessRanking
-1. Function: ResourceRanking(Firstly implement by 'many-if')
-   - Description: Rank the usefulness of collected resources
+1. Function: predict_for_user(for user)
+   - Description: Input the lists of features collected from the websites, this function apply them to a trained random forest classifier and generate prediction for them
    - Input:
-     - processed_data: processed related resources found through the search, format friendly for later modules
+     - processed_data:features(list): all features collected from corresponding websites in 'final_results_list' for later classifier prediction
    - Output:
-     - rank: a list that contains the ranking for resources of the same index in ripe_data accordingly
-   - Functionality: Provide the ranking of usefulness for all resources, used as judgment criteria in later module
+     - predictions(list): predicated labels from rf classifier to corresponding websites in input 'features'
 
-2. Function: FurtherResearch(extra)
-   - Description: For each of the classified result, track some furthur features, include but not limited to user comments, user rankings, page view, share or reprint times, favorite perventage, release time, publisher etc..
-   - Input:
-     - processed_data: processed related resources found through the search, format friendly for later modules
-     - (extra)conditions: filtering conditions for returned value according to user input string
-   - Output:
-     - filtered_data:  a list that contains the further ranking for resources of the same index in ripe_data accordingly
-   - Functionality: Track all top results upon certain features for further usefulness evaluation
+2. Function: training(for classifier)
+   - Description: Similar to predict_for_user, but this function is designed to train and evaluate the classifier.
 
-# Algorithm Design(secondary version, subject to change)
-## (New version)only naive primary thought, no reference
+
+# Algorithm Design
 1. Using a crawler to copy down the source code of html page for every individual google search result according to input keyword.</br>
 ![172eee9c7336938393c2ec712c2ff97](https://user-images.githubusercontent.com/66361320/135891667-90540080-ca48-456f-bb52-f97ef9aeb3da.png)
 
@@ -108,7 +104,14 @@ Incoming
 Self-collected, attached in 'dataset' folder
 
 ## Papers
-incoming:https://ieeexplore.ieee.org/abstract/document/9529407
+* Beautiful Soup Official Document: https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/
+* Current Google Search Packages using Python3.7: A Simple Tutorial: https://towardsdatascience.com/current-google-search-packages-using-python-3-7-a-simple-tutorial-3606e459e0d4
+* An Introduction To Building a Classification Model Using Random Forests In Python: https://blogs.oracle.com/ai-and-datascience/post/an-introduction-to-building-a-classification-model-using-random-forests-in-python
+* How To Build a Machine Learning Classifier in Python with Scikit-learn: https://www.digitalocean.com/community/tutorials/how-to-build-a-machine-learning-classifier-in-python-with-scikit-learn
+* Searching and Ranking Educational Resources based on Terms Clustering: https://pdfs.semanticscholar.org/eee4/070731bcab1e425831aef2bf4fb5006c289f.pdf
+* An Implementation and Explanation of the Random Forest in Python: https://towardsdatascience.com/an-implementation-and-explanation-of-the-random-forest-in-python-77bf308a9b76
+* Classification: ROC Curve and AUC: https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc
+
 
 ## APIs
-googlesearch API: https://python-googlesearch.readthedocs.io/en/latest/
+* googlesearch API: https://python-googlesearch.readthedocs.io/en/latest/
