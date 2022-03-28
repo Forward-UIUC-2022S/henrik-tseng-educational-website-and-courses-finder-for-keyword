@@ -7,7 +7,7 @@ import time
 import csv
 
 path = "./tmp_website.html"
-
+timeout_seconds = 2
 '''
 Function: DataSearch
 
@@ -37,10 +37,20 @@ def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windo
 
     # print("cp1")
 
+    # for i in search(query,  # The query you want to run
+    #                 tld='com',  # The top level domain
+    #                 lang='en',  # The language
+    #                 # num = 10,     # Number of results per page
+    #                 start=0,  # First result to retrieve
+    #                 stop=2*result_num + 5,  # Last result to retrieve
+    #                 pause=2.0,  # Lapse between HTTP requests
+    #                 ):
+    #     first_results_list.append(i)
+    
     for i in search(query,  # The query you want to run
                     tld='com',  # The top level domain
                     lang='en',  # The language
-                    # num = 10,     # Number of results per page
+                    num = 10,     # Number of results per page
                     start=0,  # First result to retrieve
                     stop=2*result_num + 5,  # Last result to retrieve
                     pause=2.0,  # Lapse between HTTP requests
@@ -54,6 +64,7 @@ def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windo
             break
 
         if apply_filter == 1:
+            print(web)
             main_part = web.split("//")[1]
             main_part_1 = main_part.split("/")[0]
 
@@ -77,7 +88,15 @@ def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windo
 
         header = {"User-Agent": user_header}
         request = urllib.request.Request(website, headers = header)
-        response = urllib.request.urlopen(request).read()
+        print(website)
+        time.sleep(randint(1,5))  # from 5 to 30 seconds
+        
+        try:
+            response = urllib.request.urlopen(request, timeout=timeout_seconds).read()
+            #print(type(response))
+        except Exception as e:
+            print("Unable to access website, error " + str(e))
+            response = b''
 
         # store the website into the temporary file
         file = open(path, "wb")
@@ -93,6 +112,10 @@ def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windo
 
         # print("cp3")
 
+        ### Adding new features
+        
+
+
         # feature: content length
         feature.append(len(original_text[0]))
 
@@ -101,7 +124,7 @@ def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windo
 
         for word in content_words:
             feature.append(original_text[0].count(word))
-
+        print(original_text)
         final_features.append(feature)
 
     return final_results_list, final_features

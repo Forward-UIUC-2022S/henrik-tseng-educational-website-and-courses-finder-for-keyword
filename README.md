@@ -90,7 +90,7 @@ Google Drive: https://drive.google.com/file/d/1njDFgL8vB1uZiJqXHRxSSATe9LI4c3yn/
    - (4) Diagram, same as (3)
 
 3. Some extra criteria I think is necessary(Planned extra implementation):
-   - User comments, rankings, page view, share or reprint times, favorite perventage. 
+   - User comments, rankings, page view, share or reprint times, favorite percentage. 
    - Release time, publisher
 
 # Issues and Future Work

@@ -10,6 +10,9 @@ import itertools
 
 random_seed = 5
 
+data_labeling_path = "/Users/enteilegend/forward_lab/educational-website-and-courses-finder-for-keyword/henrik-tseng-educational-website-and-courses-finder-for-keyword/dataset/data_labeling.xlsx"
+modified_data_labeling_path = "/Users/enteilegend/forward_lab/educational-website-and-courses-finder-for-keyword/henrik-tseng-educational-website-and-courses-finder-for-keyword/dataset/data_labeling_modified.xlsx"
+
 """
 User service section
 """
@@ -31,11 +34,16 @@ def predict_for_user(features):
     predictions = []
 
     # Load dataset
-    df = pd.read_excel(r'E:\Learning\undergraduate\2021 Fall\CS397\data_labeling.xlsx', sheet_name='dataset')
-    x = df.iloc[:, [0, 7]].values
-    labels = df.iloc[:, 8].values
-
-
+    # df = pd.read_excel(r'E:\Learning\undergraduate\2021 Fall\CS397\data_labeling.xlsx', sheet_name='dataset')
+    df = pd.read_excel(modified_data_labeling_path, sheet_name='Sheet1')
+    # 3 is org
+    x = df.iloc[:, [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]].values
+    labels = df.iloc[:, 28].values
+    
+    print("x")
+    print(x)
+    print("labels")
+    print(labels)
 
     model = RandomForestClassifier(n_estimators=100,
                                    random_state=random_seed,
@@ -45,12 +53,32 @@ def predict_for_user(features):
     model.fit(x, labels)
 
     new_feature = []
-    for i in features:
-        temp = []
-        temp.append(i[0])
-        temp.append(i[-1])
-        new_feature.append(temp)
+    # for i in features:
+    #     #temp = []
+    #     #temp.append(i[0])
+    #     #temp.append(i[-1])
+    #     #new_feature.append(temp)
+        
+    #     new_feature = [i]
+    #     print("NEW FEATURES")
+    #     print(new_feature)
+    #     prediction = (model.predict(new_feature))
+    #     predictions.append(prediction)
+        
     # Evaluation dataset predictions (to evaluate the trained model)
+    
+    
+    #predictions.append(model.predict(new_feature))
+    
+    for i in features:
+        #temp = []
+        #temp.append(i[0])
+        #temp.append(i[-1])
+        #new_feature.append(temp)
+        new_feature.append(i)
+    # Evaluation dataset predictions (to evaluate the trained model)
+    print("new features")
+    print(new_feature)
     predictions.append(model.predict(new_feature))
 
     return predictions
@@ -62,6 +90,7 @@ Train-test-evaluate section
 # Load dataset
 def training():
     df = pd.read_excel(r'E:\Learning\undergraduate\2021 Fall\CS397\data_labeling.xlsx', sheet_name='dataset')
+    df = pd.read_excel(data_labeling_path, sheet_name='dataset')
     x = df.iloc[:, [0, 7]].values
     labels = df.iloc[:, 8].values
 
