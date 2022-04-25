@@ -40,10 +40,10 @@ def predict_for_user(features):
     x = df.iloc[:, [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]].values
     labels = df.iloc[:, 28].values
     
-    print("x")
-    print(x)
-    print("labels")
-    print(labels)
+    #print("x")
+    #print(x)
+    #print("labels")
+    #print(labels)
 
     model = RandomForestClassifier(n_estimators=100,
                                    random_state=random_seed,
@@ -53,34 +53,26 @@ def predict_for_user(features):
     model.fit(x, labels)
 
     new_feature = []
-    # for i in features:
-    #     #temp = []
-    #     #temp.append(i[0])
-    #     #temp.append(i[-1])
-    #     #new_feature.append(temp)
-        
-    #     new_feature = [i]
-    #     print("NEW FEATURES")
-    #     print(new_feature)
-    #     prediction = (model.predict(new_feature))
-    #     predictions.append(prediction)
-        
     # Evaluation dataset predictions (to evaluate the trained model)
     
     
     #predictions.append(model.predict(new_feature))
-    
-    for i in features:
-        #temp = []
-        #temp.append(i[0])
-        #temp.append(i[-1])
-        #new_feature.append(temp)
-        new_feature.append(i)
-    # Evaluation dataset predictions (to evaluate the trained model)
-    print("new features")
-    print(new_feature)
-    predictions.append(model.predict(new_feature))
+    #print("Full features")
+    #print(features)
+    #print("length")
+    #print(len(features))
+    for i in range(len(features)):
+        print(features[i])
+        # skip the first string that has the URL
+        feature = features[i]
+        new_feature.append(feature[1:])
 
+    # Evaluation dataset predictions (to evaluate the trained model)
+    #print("new features")
+    #print(new_feature)
+    predictions.append(model.predict(new_feature))
+    #print("prediction")
+    #print(predictions)
     return predictions
 
 """
@@ -89,44 +81,46 @@ Train-test-evaluate section
 
 # Load dataset
 def training():
-    df = pd.read_excel(r'E:\Learning\undergraduate\2021 Fall\CS397\data_labeling.xlsx', sheet_name='dataset')
-    df = pd.read_excel(data_labeling_path, sheet_name='dataset')
-    x = df.iloc[:, [0, 7]].values
-    labels = df.iloc[:, 8].values
+    # old dataframes not used anymore
+    # df = pd.read_excel(r'E:\Learning\undergraduate\2021 Fall\CS397\data_labeling.xlsx', sheet_name='dataset')
+    # df = pd.read_excel(data_labeling_path, sheet_name='dataset')
+    df = pd.read_excel(modified_data_labeling_path, sheet_name='Sheet1')
+    x = df.iloc[:, [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]].values
+    labels = df.iloc[:, 28].values
 
     train, test, train_labels, test_labels = train_test_split(x, labels, stratify = labels, test_size=0.3, random_state = random_seed)
 
     print('format is:',test)
 
-    # model = RandomForestClassifier(n_estimators = 100,
-    #                            random_state = random_seed,
-    #                            max_features = 'sqrt')
+    model = RandomForestClassifier(n_estimators = 100,
+                               random_state = random_seed,
+                               max_features = 'sqrt')
 
     # Fit on training data
-    # model.fit(train, train_labels)
+    model.fit(train, train_labels)
 
 
     # Training predictions (to demonstrate overfitting)
-    # train_rf_predictions = model.predict(train)
-    # train_rf_probs = model.predict_proba(train)[:, 1]
+    train_rf_predictions = model.predict(train)
+    train_rf_probs = model.predict_proba(train)[:, 1]
 
     # Testing predictions (to determine performance)
-    # rf_predictions = model.predict(test)
-    # rf_probs = model.predict_proba(test)[:, 1]
-    #
-    # print("-----------------Training Part----------------")
-    # print('Test Accuracy:',accuracy_score(test_labels, rf_predictions))
+    rf_predictions = model.predict(test)
+    rf_probs = model.predict_proba(test)[:, 1]
+    
+    print("-----------------Training Part----------------")
+    print('Test Accuracy:',accuracy_score(test_labels, rf_predictions))
 
-    # Load evaluation dataset
+    # # Load evaluation dataset
     # df_eval = pd.read_excel(r'E:\Learning\undergraduate\2021 Fall\CS397\data_labeling.xlsx', sheet_name='evaluateset')
     # eval_x = df_eval.iloc[:, [0, 7]].values
     # eval_labels = df_eval.iloc[:, 8].values
 
-    # Evaluation dataset predictions (to evaluate the trained model)
+    # # Evaluation dataset predictions (to evaluate the trained model)
     # rf_eval_predictions = model.predict(eval_x)
     # rf_eval_probs = model.predict_proba(eval_x)[:, 1]
 
-    # Plot formatting
+    # # Plot formatting
     # plt.style.use('fivethirtyeight')
     # plt.rcParams['font.size'] = 18
 
