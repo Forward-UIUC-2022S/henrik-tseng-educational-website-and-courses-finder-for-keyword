@@ -1,0 +1,101 @@
+Model 1, Old model that did not use additional data from website content and used smaller dataset:
+Search binary tree, 10 results, filtered
+
+['https://en.wikipedia.org/wiki/Binary_tree',  [2389, 0, 0, 0, 1, 1, 0, 0]
+1: has pictures, long length, some keywords, rate 1 to 2
+'http://cslibrary.stanford.edu/110/BinaryTrees.html', [15405, 0, 2, 0, 3, 2, 0, 2]
+1: Long length, has some pictures, low keywords, rating 1 is good
+'https://www.geeksforgeeks.org/binary-tree-data-structure/', [1716, 0, 1, 0, 0, 0, 0, 0]
+0: Mostly just links to other specific binary tree problems, low picture count, low keywords, 0 is good
+'https://www.programiz.com/dsa/binary-tree', [2627, 0, 0, 0, 0, 0, 0, 0]
+0: no keywords, some pictures, 0 is good, 
+'https://www.binarytree.com/', 0 [3768, 0, 0, 0, 0, 1, 0, 0] 
+0: low keywords, some pictures, company website, not related to binary tree, 0 is good
+'https://www.tutorialspoint.com/data_structures_algorithms/tree_data_structure.htm', 0 0 [0, 0, 0, 0, 0, 0, 0, 0]
+0: unable to parse, probably issue with cookies low keywords, some pictures but long length and relevant to teaching, would rate as a 1 or 2
+'https://www.youtube.com/watch?v=H5JubkIy_p8', 0 [22963, 0, 3, 0, 0, 5, 0, 0]
+0:  youtube videos aren't desired, 0 is good
+'https://www.baeldung.com/cs/binary-tree-intro', 0 [2805, 0, 2, 0, 0, 0, 0, 0]
+0: some pictures, relevant information, would rate as 1 to 2
+'https://www.javatpoint.com/binary-tree', 0 [5362, 0, 6, 0, 0, 1, 0, 0]
+0: good amount of pictures, not many keywords, but relevant information, rate 1 to 2
+'https://www.cs.usfca.edu/~galles/visualization/BST.html'] 0 [24, 0, 0, 0, 0, 0, 0, 0]
+0: visualization website, not useful for information, 0 is good
+Useful level(larger = better): [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+
+Model 2, model implemented using additional data, first implementation, using new dataset
+results for "computer science" 10 results, filter out duplicates
+
+['https://en.wikipedia.org/wiki/Computer_science', 1 
+decent inclusion of keywords and images, lots of information, might be worth rating higher?
+'https://www.britannica.com/science/computer-science', 1 
+Some images, many keywords, result seems reasonable
+'https://www.topuniversities.com/courses/computer-science-information-systems/guide', 1 
+Some images, but too short, maybe should be rated lower?
+'https://www.wikidata.org/wiki/Q21198', 0
+Some images, short content length, many links however, would rate between 0-1?
+'https://cs.illinois.edu/', 0
+No educational information, 0 seems good
+'https://undergrad.cs.umd.edu/what-computer-science', 0 
+Short, no images, but on topic, rate 0-1
+'https://evanstonroundtable.com/2022/02/20/dawes-computer-science-gym-class-district-65/', 0  
+Specific case study, not very educational, 0 is good
+'https://www.salon.com/2022/02/18/melanias-donation-to-a-computer-science-school-was-rejected-so-now-she-feels-cancelled/',  0
+Specific case study, not educational, 0 is good
+'https://www.zdnet.com/education/computers-tech/free-online-computer-science-classes/',  0 
+Advertisement, no keywords or relevant images, 0 is good
+'https://www.computerscience.org/' 0 ]
+Short and little images, but relevant links, maybe 0 or 1?
+
+Useful level(larger = better): [1, 1, 1, 0, 0, 0, 0, 0, 0, 0]
+
+Model 3, model utilized additional data from webscraping, slightly modified from model 2, using a different dataset which is slightly bigger:
+Binary tree search results
+['https://en.wikipedia.org/wiki/Binary_tree', 
+2, good
+'http://cslibrary.stanford.edu/110/BinaryTrees.html', 
+2
+'https://www.educative.io/edpresso/what-is-a-binary-tree', 
+1
+'https://upload.wikimedia.org/wikipedia/commons/5/5e/Binary_tree_v2.svg?sa=X&ved=2ahUKEwjMgozGovv2AhX3JTQIHVP5AhAQ_B16BAgBEAI', 
+0
+'https://www.geeksforgeeks.org/binary-tree-data-structure/',
+0
+ 'https://www.binarytree.com/', 
+0
+'https://www.programiz.com/dsa/binary-tree', 
+0
+'https://www.tutorialspoint.com/data_structures_algorithms/tree_data_structure.htm', 
+0
+'https://www.youtube.com/watch?v=H5JubkIy_p8',
+0
+'https://www.cs.usfca.edu/~galles/visualization/BST.html']
+Useful level(larger = better): [2, 2, 1, 0, 0, 0, 0, 0, 0, 0]
+
+
+Big O Notation search results:
+['https://en.wikipedia.org/wiki/Big_O_notation',
+2
+'https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/', 
+2
+'https://www.interviewcake.com/article/java/big-o-notation-time-and-space-complexity', 
+2
+'https://www.linkedin.com/pulse/big-o-notation-simple-explanation-examples-pamela-lovett', 
+2
+'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Big-O-notation.png/300px-Big-O-notation.png?sa=X&ved=2ahUKEwjP0sHQp_v2AhXIIjQIHRMUCHIQ_B16BAgBEAI', 
+0
+'https://www.youtube.com/watch?v=v4cd1O4zkGw', 
+0
+'https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation', 
+0
+'https://yourbasic.org/algorithms/big-o-notation-explained/', 
+0
+'https://web.mit.edu/16.070/www/lecture/big_o.pdf', 
+0 [0, 1, 0, 0, 0, 325, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+'https://medium.com/karuna-sehgal/a-simplified-explanation-of-the-big-o-notation-82523585e835']
+0
+
+[2, 2, 2, 2, 0, 0, 0, 0, 0, 0]
+
+
+

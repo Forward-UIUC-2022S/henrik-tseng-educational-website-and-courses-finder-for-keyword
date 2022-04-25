@@ -115,3 +115,18 @@ Self-collected, attached in 'dataset' folder
 
 ## APIs
 * googlesearch API: https://python-googlesearch.readthedocs.io/en/latest/
+
+
+## Edits by Henrik Tseng
+1. Addition of new files and new functions:
+   - main_two.py: another additional main py file that focuses on calling functions for web scraping and adding to datasets
+   - webpage_crawler.DataCollectionList: New function that expands on Data
+2. Modifying and adding datasets:
+   - Multiple new datasets added in the dataset folder:
+      - Notable datasets are data_labeling_modified_copy.xlsx, which is now the main dataset that should be used for training the model
+      - Another notable dataset is data_collection_out.csv, which the main_two.py file will output the results toward, which will store the results of webscrabing
+      - The rest of the datasets in the folder are mostly random datasets created while bugtesting, and not really useful
+3. Changing functions and functionality:
+   - webpage_crawler.DataSearch: Heavily modified to include details about the content within websites and to return the additional content
+   - modify_data.add_sum: modified so that the model will take in additional content parsed by datasearch
+

@@ -1,0 +1,7 @@
+pip install -U scikit-learn
+pip install pandas
+pip install -U matplotlib
+#python3 -m pip install googlesearch-python
+pip install google
+pip install openpyxl
+pip install lxml
