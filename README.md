@@ -120,13 +120,21 @@ Self-collected, attached in 'dataset' folder
 ## Edits by Henrik Tseng
 1. Addition of new files and new functions:
    - main_two.py: another additional main py file that focuses on calling functions for web scraping and adding to datasets
-   - webpage_crawler.DataCollectionList: New function that expands on Data
+   - webpage_crawler.DataCollectionList: New function that expands on Datasearch
+   - parsePDF: New function that parses in PDF, uses PyPDF2
 2. Modifying and adding datasets:
    - Multiple new datasets added in the dataset folder:
       - Notable datasets are data_labeling_modified_copy.xlsx, which is now the main dataset that should be used for training the model
       - Another notable dataset is data_collection_out.csv, which the main_two.py file will output the results toward, which will store the results of webscrabing
       - The rest of the datasets in the folder are mostly random datasets created while bugtesting, and not really useful
 3. Changing functions and functionality:
-   - webpage_crawler.DataSearch: Heavily modified to include details about the content within websites and to return the additional content
+   - webpage_crawler.DataSearch: Heavily modified to include details about the content within websites and to return the additional content, specifically includes points of 'content_length','content_diagram','content_example', 'content_formula', 'content_graph', 'content_code', 'content_video', 'content_book', 'label'
+      - Datasearch now is able to parse txt files, but videos are still ignore and counted as a 0 by the model
+      - More parameters now, user can input how long to wait in between search results(in seconds) with parameter sleep_floor and sleep_ceiling
+      - Removed youtube links from being accepted as possible results. Can easily add more links to ignore with the new global variable IGNORE_LINKS
    - modify_data.add_sum: modified so that the model will take in additional content parsed by datasearch
+4. Possible additions in the future:
+   - Incorporate youtube links(currently ignored in the model) by parsing transcript instead
+   - Image, audio, links, and files counted can be inaccurate currently due to searching keywords instead
+   - Another factor to add could include number of links in the website(would mean that a table of contents could be rated higher)
 

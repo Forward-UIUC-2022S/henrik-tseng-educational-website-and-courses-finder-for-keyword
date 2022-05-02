@@ -12,7 +12,7 @@ random_seed = 5
 
 data_labeling_path = "/Users/enteilegend/forward_lab/educational-website-and-courses-finder-for-keyword/henrik-tseng-educational-website-and-courses-finder-for-keyword/dataset/data_labeling.xlsx"
 modified_data_labeling_path = "/Users/enteilegend/forward_lab/educational-website-and-courses-finder-for-keyword/henrik-tseng-educational-website-and-courses-finder-for-keyword/dataset/data_labeling_modified.xlsx"
-
+new_training_set_path = "/Users/enteilegend/forward_lab/educational-website-and-courses-finder-for-keyword/henrik-tseng-educational-website-and-courses-finder-for-keyword/dataset/data_labeling_new_labels.xlsx"
 """
 User service section
 """
@@ -35,9 +35,11 @@ def predict_for_user(features):
 
     # Load dataset
     # df = pd.read_excel(r'E:\Learning\undergraduate\2021 Fall\CS397\data_labeling.xlsx', sheet_name='dataset')
-    df = pd.read_excel(modified_data_labeling_path, sheet_name='Sheet1')
-    # 3 is org
-    x = df.iloc[:, [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]].values
+    # df = pd.read_excel(modified_data_labeling_path, sheet_name='Sheet1')
+    df = pd.read_excel(new_training_set_path, sheet_name='Sheet1')
+    # 3 is org factor from parsing website url, and continues on until the end label at index 27
+    factor_indexes = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
+    x = df.iloc[:, factor_indexes].values
     labels = df.iloc[:, 28].values
     
     #print("x")
@@ -98,7 +100,6 @@ def training():
 
     # Fit on training data
     model.fit(train, train_labels)
-
 
     # Training predictions (to demonstrate overfitting)
     train_rf_predictions = model.predict(train)

@@ -8,8 +8,9 @@ import csv
 import requests, PyPDF2
 #from PyPDF2 import PdfFileReader
 
-path = "./tmp_website.html"
-timeout_seconds = 2
+PATH = "./tmp_website.html"
+TIMEOUT_SECONDS = 2
+IGNORE_LINKS = ["youtube"]
 '''
 Function: DataSearch
 
@@ -28,7 +29,7 @@ Outputs:
     final_features(list): all features collected from corresponding websites in 'final_results_list' for later classifier prediction
 '''
 
-def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"):
+def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36", sleep_floor = 1, sleep_ceiling = 3):
 
     keyword = keyword.lower()
     query = str(keyword)
@@ -70,7 +71,7 @@ def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windo
             main_part = web.split("//")[1]
             main_part_1 = main_part.split("/")[0]
 
-            if main_part_1 not in temp:
+            if main_part_1 not in temp and not any(substring in main_part_1 for substring in IGNORE_LINKS):
                 temp.append(main_part_1)
                 final_results_list.append(web)
 
@@ -91,22 +92,22 @@ def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windo
         header = {"User-Agent": user_header}
         request = urllib.request.Request(website, headers = header)
         print(website)
-        time.sleep(randint(1,3))  # from 5 to 30 seconds
+        time.sleep(randint(sleep_floor, sleep_ceiling))  # from 1 to 3 default
         
         try:
-            response = urllib.request.urlopen(request, timeout=timeout_seconds).read()
+            response = urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS).read()
             #print(type(response))
         except Exception as e:
             print("Unable to access website, error " + str(e))
             response = b''
 
         # store the website into the temporary file
-        file = open(path, "wb")
+        file = open(PATH, "wb")
         file.write(response)
         file.close()
 
         # fetch the appropriate text from the website
-        soup = BeautifulSoup(open(path,'rb'), features="lxml")
+        soup = BeautifulSoup(open(PATH,'rb'), features="lxml")
         for p_idx in soup.select("p"):
             tmp_text += p_idx.get_text()
 
@@ -137,7 +138,6 @@ def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windo
 
         div = divs[0]
         div_text = div.get_text()
- 
 
         # feature = [org?,edu?,com?,else?,keyword in entry?,entry length,10 types,label]
 

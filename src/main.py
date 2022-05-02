@@ -23,9 +23,19 @@ while (apply_filter != 0) and (apply_filter != 1):
     apply_filter = int(input("Do you want to apply the filter to clear similar results?(1 for yes, 0 for no):"))
 
 # user_header = input("Please enter the 'User-Agent' of your computer:")
+sleep_floor = int(input("Please enter a minimum and maximum range of how long to wait between each search result in seconds (recommended 1 to 3 seconds):\nMin:"))
+while (not isinstance(sleep_floor, int)):
+    print("Please enter an integer")
+    sleep_floor = int(input("Please enter a minimum and maximum range of how long to wait between each search result in seconds (recommended 1 to 3 seconds):\nMin:"))
+
+sleep_ceiling = int(input("Max:"))
+while (not isinstance(sleep_ceiling, int)):
+    print("Please enter an integer")
+    sleep_ceiling = int(input("Max:"))
+
 
 print("Program is collecting search results, please wait...")
-websites, features = webpage_crawler.DataSearch(keyword, website_num, apply_filter, user_header= default_header)
+websites, features = webpage_crawler.DataSearch(keyword, website_num, apply_filter, user_header= default_header, sleep_floor=sleep_floor, sleep_ceiling=sleep_ceiling)
 print("features")
 print(features)
 

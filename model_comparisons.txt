@@ -98,4 +98,64 @@ Big O Notation search results:
 [2, 2, 2, 2, 0, 0, 0, 0, 0, 0]
 
 
+***New Results using final model:
+Binary Tree 10 results, filter on, sleep 1-3 seconds
+['https://en.wikipedia.org/wiki/Binary_tree', 
+2 good, long and descriptive with images and links
+'http://cslibrary.stanford.edu/110/BinaryTrees.html', 
+2 goodish, very long and descriptive, no images (some represented in text form) 2/1.5 ish is good
+'https://www.geeksforgeeks.org/binary-tree-data-structure/', 
+1 Lots of links, 1 is reasonable given no images but just many links, on topic still
+'https://www.tutorialspoint.com/data_structures_algorithms/tree_data_structure.htm', 
+1 not very long, but on topic with images, 1 is good
+'https://www.javatpoint.com/binary-tree', 
+1 not very long, has images, 1 is good
+'https://www.educative.io/edpresso/what-is-a-binary-tree', 
+1 very short, has images, on topic, 1/0.5 ish is good
+'https://upload.wikimedia.org/wikipedia/commons/5/5e/Binary_tree_v2.svg?sa=X&ved=2ahUKEwifk7qI3sD3AhUEIDQIHWFmAFkQ_B16BAgEEAI', 
+0 could not load website, 0 is good
+'https://www.binarytree.com/', 
+0 off topic, 0 is good, not educational
+'https://www.programiz.com/dsa/binary-tree', 
+0 very short, on topic with images, maybe a 0 or a 1?
+'https://www.cs.usfca.edu/~galles/visualization/BST.html']
+0 no text, 0 is good, not educational
+Useful level(larger = better): [2, 2, 1, 1, 1, 1, 0, 0, 0, 0]
 
+Big O Notation 10 results, filter on, sleep 1-3 seconds
+['https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/', 
+2 long, educational, with images, 2 is good
+'https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation', 
+2 a bit short, bloated with comments, but on topic with images, maybe 1?
+'https://yourbasic.org/algorithms/big-o-notation-explained/',
+2 medium length, on topic with images, 2 is good, maybe 1.5ish
+'https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation', 
+2 medium length, no images, probably a around a 1
+'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Big-O-notation.png/300px-Big-O-notation.png?sa=X&ved=2ahUKEwi74viy4MD3AhWEDzQIHYuBDXAQ_B16BAgDEAI', 
+1 single image, should be a 0?
+'https://www.interviewcake.com/article/java/big-o-notation-time-and-space-complexity', 
+1 no images, long length and on topic, 1 is good
+'https://xlinux.nist.gov/dads/HTML/bigOnotation.html', 
+1 very short, has images and on topic, 1 is good
+'https://en.wikipedia.org/wiki/Big_O_notation', 
+0, long ,education, with images, should be 2?
+'https://www.doabledanny.com/big-o-notation-in-javascript', 
+0, long, educational, has images, should be 2.
+'https://www.educative.io/edpresso/what-is-big-o-notation']
+0, medium/short length, educational, has images, should be 1
+
+Useful level(larger = better): [2, 2, 2, 2, 1, 1, 1, 0, 0, 0]
+
+More specific detail from BIG O NOTATION search above from final model:
+['https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Big-O-notation.png/300px-Big-O-notation.png?sa=X&ved=2ahUKEwi74viy4MD3AhWEDzQIHYuBDXAQ_B16BAgDEAI', 1, 0, 0, 0, 0, 339, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+['https://en.wikipedia.org/wiki/Big_O_notation', 1, 0, 0, 0, 0, 1230, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26130, 0, 22, 1, 1, 0, 0, 3]
+Unsure why this is rated as 0, need more information
+['https://www.freecodecamp.org/news/big-o-notation-why-it-matters-and-why-it-doesnt-1674cfa8a23c/', 1, 0, 0, 0, 0, 334, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15992, 0, 14, 0, 1, 5, 1, 0]
+['https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation', 1, 0, 0, 0, 0, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 0, 0]
+['https://www.interviewcake.com/article/java/big-o-notation-time-and-space-complexity', 0, 0, 1, 0, 0, 306, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6723, 0, 3, 0, 0, 1, 0, 0]
+['https://xlinux.nist.gov/dads/HTML/bigOnotation.html', 0, 0, 0, 1, 0, 281, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3248, 0, 2, 0, 0, 0, 0, 0]
+['https://yourbasic.org/algorithms/big-o-notation-explained/', 1, 0, 0, 0, 0, 323, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2737, 0, 3, 0, 1, 0, 0, 0]
+['https://www.doabledanny.com/big-o-notation-in-javascript', 0, 0, 1, 0, 0, 393, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 22679, 0, 20, 0, 5, 4, 4, 1]
+['https://www.educative.io/edpresso/what-is-big-o-notation', 0, 1, 0, 0, 0, 291, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3100, 0, 0, 0, 0, 1, 0, 0]
+['https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation', 0, 0, 0, 1, 0, 329, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3905, 0, 6, 0, 0, 1, 0, 1]
+[array([1, 0, 2, 2, 1, 1, 2, 0, 0, 2])]
