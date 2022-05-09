@@ -44,7 +44,7 @@ zicheng-ma-educational-website-and-courses-finder-for-keyword/
 
 # Demo Video
 Google Drive: https://drive.google.com/file/d/1njDFgL8vB1uZiJqXHRxSSATe9LI4c3yn/view?usp=sharing
-Updated Video: https://youtu.be/6GF7YlWqH88
+Updated Video: https://youtu.be/yFSXfu15QG0
 
 # Functional Design
 ## Module: DataCollection
