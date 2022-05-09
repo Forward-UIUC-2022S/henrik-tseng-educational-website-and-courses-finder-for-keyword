@@ -7,6 +7,9 @@ This project will return the filtered useful educational resources based on inpu
 pip install -r requirements.txt
 ```
 
+Alternative:
+Manually run line by line in the command prompt for the dependencies listed in manual_requirements.txt
+
 ## File Structure
 ```
 zicheng-ma-educational-website-and-courses-finder-for-keyword/
@@ -41,6 +44,7 @@ zicheng-ma-educational-website-and-courses-finder-for-keyword/
 
 # Demo Video
 Google Drive: https://drive.google.com/file/d/1njDFgL8vB1uZiJqXHRxSSATe9LI4c3yn/view?usp=sharing
+Updated Video: https://youtu.be/6GF7YlWqH88
 
 # Functional Design
 ## Module: DataCollection
@@ -116,12 +120,13 @@ Self-collected, attached in 'dataset' folder
 ## APIs
 * googlesearch API: https://python-googlesearch.readthedocs.io/en/latest/
 
-
 ## Edits by Henrik Tseng
 1. Addition of new files and new functions:
    - main_two.py: another additional main py file that focuses on calling functions for web scraping and adding to datasets
    - webpage_crawler.DataCollectionList: New function that expands on Datasearch
    - parsePDF: New function that parses in PDF, uses PyPDF2
+   - manual_requirements.txt: full list of new dependencies for manual installation instead of using requirements.txt
+   - model_comparisons.txt: New file that stores past comparison with keywords.
 2. Modifying and adding datasets:
    - Multiple new datasets added in the dataset folder:
       - Notable datasets are data_labeling_modified_copy.xlsx, which is now the main dataset that should be used for training the model
@@ -137,4 +142,20 @@ Self-collected, attached in 'dataset' folder
    - Incorporate youtube links(currently ignored in the model) by parsing transcript instead
    - Image, audio, links, and files counted can be inaccurate currently due to searching keywords instead
    - Another factor to add could include number of links in the website(would mean that a table of contents could be rated higher)
+   - training, evaluate_model, plot_confusion_matrix functions from rf_classifier need to be updated to work with new model
+5. New Dependencies:
+   - PyPDF2, can be installed with
+      - pip install PyPDF2
+   - See manual_requirements.txt for full list of dependencies
+5. Schedule(Date):
+   - 2/7: Changed dependencies. Refer to manual_requirements for more details
+   - 2/14: Now skipping certain websites using ignore_website
+   - 2/21-3/7: Updating model to use keyword count and additional factors from website details
+   - 3/14: Updating training datasets
+   - 3/21-4/4: Continue updating model and overall refactoring of the web scraper function
+   - 4/11-Current: Created DataCollectionList function and updated to update the new training dataset
+6. Current Model performance:
+   - Compared to original model at the beginning (Jan 2022) significant improvements on the ratings, outputting higher ratings(2) overall for a more desirable output
+   - Still certain problems with current model not predicting accurately, notable with BIG O NOTATION keyword and websites with high keyword count, and educational resources being rated low(ex. big o notation on wikipedia being rated as 0 with good factors to consider)
+   - training, evaluate_model, plot_confusion_matrix functions from rf_classifier need to be updated to work with new model
 

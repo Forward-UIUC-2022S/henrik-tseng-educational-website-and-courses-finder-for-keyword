@@ -81,7 +81,8 @@ def predict_for_user(features):
 Train-test-evaluate section
 """
 
-# Load dataset
+# Load modified path dataset. NOTE: Currently only checks accuracy on a 80% training 20% testing split.
+# Needs to be improved to account for additional statistics.
 def training():
     # old dataframes not used anymore
     # df = pd.read_excel(r'E:\Learning\undergraduate\2021 Fall\CS397\data_labeling.xlsx', sheet_name='dataset')
@@ -125,7 +126,7 @@ def training():
     # plt.style.use('fivethirtyeight')
     # plt.rcParams['font.size'] = 18
 
-
+# NOTE: not currently working with current model, could maybe change to apply to current model
 def evaluate_model(predictions, train_predictions):
     """Compare machine learning model to baseline performance.
     Computes statistics and shows ROC curve."""
@@ -174,7 +175,7 @@ def evaluate_model(predictions, train_predictions):
 # evaluate_model(rf_predictions, train_rf_predictions)
 # plt.savefig('roc_auc_curve.png')
 
-
+# NOTE: May not work with current model, needs to be updated
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',

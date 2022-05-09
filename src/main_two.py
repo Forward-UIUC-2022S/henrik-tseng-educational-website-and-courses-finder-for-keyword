@@ -7,8 +7,8 @@ import urllib.parse
 from googlesearch import search
 from bs4 import BeautifulSoup
 from random import randint
-import time
-import csv
+# import time
+# import csv
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
@@ -17,12 +17,12 @@ from sklearn.metrics import precision_score, recall_score, roc_auc_score, roc_cu
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import confusion_matrix
-import itertools
+# import itertools
 
 import sys
 import numpy
-import modify_data
-import rf_classifier
+# import modify_data
+# import rf_classifier
 import webpage_crawler
 
 numpy.set_printoptions(threshold=sys.maxsize)

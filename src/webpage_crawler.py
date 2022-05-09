@@ -8,8 +8,11 @@ import csv
 import requests, PyPDF2
 #from PyPDF2 import PdfFileReader
 
+# temporary file that stores website URLs
 PATH = "./tmp_website.html"
+# how long to read each website(seconds)
 TIMEOUT_SECONDS = 2
+# list of websites to ignore, just add more strings to ignore more websites
 IGNORE_LINKS = ["youtube"]
 '''
 Function: DataSearch
@@ -28,7 +31,7 @@ Outputs:
     final_results_list(list): satisfied websites list
     final_features(list): all features collected from corresponding websites in 'final_results_list' for later classifier prediction
 '''
-
+# main search function, takes in keyword and returns details of the search result
 def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36", sleep_floor = 1, sleep_ceiling = 3):
 
     keyword = keyword.lower()
@@ -248,6 +251,7 @@ def DataSearch(keyword,result_num,apply_filter,user_header = "Mozilla/5.0 (Windo
     #print(final_features)
     return final_results_list, final_features
 
+# Datasearch, but applies to multiple keywords and is able to write to a file with the results
 def DataCollectionList(keyword_list, output_path, result_num = 10, apply_filter = 1, write_feature_names = False):
 
     # Write the feature names to the first line of csv file
@@ -283,7 +287,7 @@ def DataCollectionList(keyword_list, output_path, result_num = 10, apply_filter 
                 i.insert(0,keyword)
                 writer.writerow(i)
         
-
+# will take in URL of a PDF website and return the words
 def parsePDF(url):
     response = requests.get(url)
     my_raw_data = response.content
