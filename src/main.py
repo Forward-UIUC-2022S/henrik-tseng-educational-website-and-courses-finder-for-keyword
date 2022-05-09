@@ -23,10 +23,10 @@ while (apply_filter != 0) and (apply_filter != 1):
     apply_filter = int(input("Do you want to apply the filter to clear similar results?(1 for yes, 0 for no):"))
 
 # user_header = input("Please enter the 'User-Agent' of your computer:")
-sleep_floor = int(input("Please enter a minimum and maximum range of how long to wait between each search result in seconds (recommended 1 to 3 seconds):\nMin:"))
+sleep_floor = int(input("Please enter a minimum and maximum range of how long to wait between each search result in seconds (recommended 1 to 3 seconds):"))
 while (not isinstance(sleep_floor, int)):
     print("Please enter an integer")
-    sleep_floor = int(input("Please enter a minimum and maximum range of how long to wait between each search result in seconds (recommended 1 to 3 seconds):\nMin:"))
+    sleep_floor = int(input("Please enter a minimum and maximum range of how long to wait between each search result in seconds (recommended 1 to 3 seconds):"))
 
 sleep_ceiling = int(input("Max:"))
 while (not isinstance(sleep_ceiling, int)):

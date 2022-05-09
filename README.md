@@ -14,18 +14,22 @@ Manually run line by line in the command prompt for the dependencies listed in m
 ```
 zicheng-ma-educational-website-and-courses-finder-for-keyword/
     - requirements.txt
+    - manual_requirements.txt
+    - model_comparisons.txt
     - README.md
     - dataset/
         -- data_labeling.xlsx
         -- evaluation_keyword_list.txt
         -- features_data.csv
         -- keywords_training.txt
+        -- data_labeling_new_labels.xlsx
     - src/
         -- __init__.py
         -- main.py
         -- webpage_crawler.py
         -- Train_Classifier.py
         -- rf_classifier.py
+        -- main_two.py
      - tests/
         -- sample_result.png
         -- sample_result.txt
@@ -41,6 +45,10 @@ zicheng-ma-educational-website-and-courses-finder-for-keyword/
 * ```src/webpage_crawler.py```: Used for websites collecting
 * ```src/Train_Classifier.py```: Used to train GaussianNB classifier
 * ```src/rf_classifier.py```: Used to train random forest classifier. (Users should modify the path for classifier training in this file)
+* New files added this semester
+* ```src/main_two.py```: another additional main py file that focuses on calling functions for web scraping and adding to datasets. Will work with multiple keywords and add to data_collection_out.csv, which can be copy pasted into data_labeling_new_labels.xlsx for the training data set.
+* ```dataset/data_labeling_new_labels.xlsx```: New training dataset to use
+* ```dataset/data_collection_out.csv```: Default new output file for main_two results
 
 # Demo Video
 Google Drive: https://drive.google.com/file/d/1njDFgL8vB1uZiJqXHRxSSATe9LI4c3yn/view?usp=sharing
@@ -58,14 +66,23 @@ Updated Video: https://youtu.be/yFSXfu15QG0
    - Output:
      - final_results_list(list): satisfied websites list
      - final_features(list): all features collected from corresponding websites in 'final_results_list' for later classifier prediction
+   
+   - Major changes this semester: webpage_crawler.DataSearch: Heavily modified to include details about the content within websites and to return the additional content, specifically includes points of 'content_length','content_diagram','content_example', 'content_formula', 'content_graph', 'content_code', 'content_video', 'content_book', 'label'
+      - Datasearch now is able to parse txt files, but videos are still ignore and counted as a 0 by the model
+      - More parameters now, user can input how long to wait in between search results(in seconds) with parameter sleep_floor and sleep_ceiling
+      - Removed youtube links from being accepted as possible results. Can easily add more links to ignore with the new global variable IGNORE_LINKS
 
-2. Function: DataCollection(for classifier)
+2. Function: DataCollection(for classifier), renamed to DataCollectionList
    - Description: For a certain keyword, collect its features as data from first result page and secondary result page of google search. Similar functionality to DataSearch, but this one used for large scale data collection to form a data set and train the classifier.
    - Input:
      - keyword (string): a given keyword that would be featured
      - result_num(integer): expected number of returned search results from user, default set to 10
      - apply_filter(0 or 1): indicate whether to apply the filter to clear out similar results, 1 for yes, 0 for no.
                                   Input by user, default set to 1
+
+   - Major changes this semester:
+      - function renamed to DataCollectionList
+         - Works with multiple keywords, will output result to a input path, default path to data_collection_out.csv
 
 
 ## Module: UsefulnessRanking
@@ -97,11 +114,23 @@ Updated Video: https://youtu.be/yFSXfu15QG0
    - User comments, rankings, page view, share or reprint times, favorite percentage. 
    - Release time, publisher
 
+4. Current Model performance of Spring 2022:
+   - Compared to original model at the beginning (Jan 2022) significant improvements on the ratings, outputting higher ratings(2) overall for a more desirable output
+   - Still certain problems with current model not predicting accurately, notable with BIG O NOTATION keyword and websites with high keyword count, and educational resources being rated low(ex. big o notation on wikipedia being rated as 0 with good factors to consider)
+   - training, evaluate_model, plot_confusion_matrix functions from rf_classifier need to be updated to work with new model
+
 # Issues and Future Work
 
 * The website filter function still needs some further improvement to smartly clear out the duplicate websites or similar websites that is truly not useful. 
 * Improve the situation that sometimes there will not be enough results returned by the program when applying the filter to it.
-* The internet and API issues are still instable. 
+* The internet and API issues are still instable.
+
+* New issues and future work of Spring 2022:
+   - Incorporate youtube links(currently ignored in the model) by parsing transcript instead
+   - Image, audio, links, and files counted can be inaccurate currently due to searching keywords instead
+   - Another factor to add could include number of links in the website(would mean that a table of contents could be rated higher)
+   - training, evaluate_model, plot_confusion_matrix functions from rf_classifier need to be updated to work with new model
+   - Add in functionality for rating multiple websites past the desired count, and return the best x numbers
 
 # References
 ## Dataset
@@ -120,42 +149,17 @@ Self-collected, attached in 'dataset' folder
 ## APIs
 * googlesearch API: https://python-googlesearch.readthedocs.io/en/latest/
 
-## Edits by Henrik Tseng
-1. Addition of new files and new functions:
-   - main_two.py: another additional main py file that focuses on calling functions for web scraping and adding to datasets
-   - webpage_crawler.DataCollectionList: New function that expands on Datasearch
+## Additional edits not mentioned above by Henrik Tseng
+1. Addition of new small functions not mentioned:
    - parsePDF: New function that parses in PDF, uses PyPDF2
-   - manual_requirements.txt: full list of new dependencies for manual installation instead of using requirements.txt
-   - model_comparisons.txt: New file that stores past comparison with keywords.
-2. Modifying and adding datasets:
-   - Multiple new datasets added in the dataset folder:
-      - Notable datasets are data_labeling_modified_copy.xlsx, which is now the main dataset that should be used for training the model
-      - Another notable dataset is data_collection_out.csv, which the main_two.py file will output the results toward, which will store the results of webscrabing
-      - The rest of the datasets in the folder are mostly random datasets created while bugtesting, and not really useful
-3. Changing functions and functionality:
-   - webpage_crawler.DataSearch: Heavily modified to include details about the content within websites and to return the additional content, specifically includes points of 'content_length','content_diagram','content_example', 'content_formula', 'content_graph', 'content_code', 'content_video', 'content_book', 'label'
-      - Datasearch now is able to parse txt files, but videos are still ignore and counted as a 0 by the model
-      - More parameters now, user can input how long to wait in between search results(in seconds) with parameter sleep_floor and sleep_ceiling
-      - Removed youtube links from being accepted as possible results. Can easily add more links to ignore with the new global variable IGNORE_LINKS
+2. Changing functions and functionality:
    - modify_data.add_sum: modified so that the model will take in additional content parsed by datasearch
-4. Possible additions in the future:
-   - Incorporate youtube links(currently ignored in the model) by parsing transcript instead
-   - Image, audio, links, and files counted can be inaccurate currently due to searching keywords instead
-   - Another factor to add could include number of links in the website(would mean that a table of contents could be rated higher)
-   - training, evaluate_model, plot_confusion_matrix functions from rf_classifier need to be updated to work with new model
-5. New Dependencies:
-   - PyPDF2, can be installed with
-      - pip install PyPDF2
-   - See manual_requirements.txt for full list of dependencies
-5. Schedule(Date):
+3. Schedule of Spring 2022(Dates and changes):
    - 2/7: Changed dependencies. Refer to manual_requirements for more details
    - 2/14: Now skipping certain websites using ignore_website
    - 2/21-3/7: Updating model to use keyword count and additional factors from website details
    - 3/14: Updating training datasets
    - 3/21-4/4: Continue updating model and overall refactoring of the web scraper function
    - 4/11-Current: Created DataCollectionList function and updated to update the new training dataset
-6. Current Model performance:
-   - Compared to original model at the beginning (Jan 2022) significant improvements on the ratings, outputting higher ratings(2) overall for a more desirable output
-   - Still certain problems with current model not predicting accurately, notable with BIG O NOTATION keyword and websites with high keyword count, and educational resources being rated low(ex. big o notation on wikipedia being rated as 0 with good factors to consider)
-   - training, evaluate_model, plot_confusion_matrix functions from rf_classifier need to be updated to work with new model
+
 

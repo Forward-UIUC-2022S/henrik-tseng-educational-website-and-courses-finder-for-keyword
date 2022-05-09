@@ -159,3 +159,17 @@ Unsure why this is rated as 0, need more information
 ['https://www.educative.io/edpresso/what-is-big-o-notation', 0, 1, 0, 0, 0, 291, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3100, 0, 0, 0, 0, 1, 0, 0]
 ['https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation', 0, 0, 0, 1, 0, 329, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3905, 0, 6, 0, 0, 1, 0, 1]
 [array([1, 0, 2, 2, 1, 1, 2, 0, 0, 2])]
+
+New search result for Retrieval Augmented generation:
+features
+[['https://arxiv.org/abs/2005.11401', 1, 0, 0, 0, 0, 556, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 722, 0, 0, 0, 0, 0, 0, 0], ['https://ai.facebook.com/blog/retrieval-augmented-generation-streamlining-the-creation-of-intelligent-natural-language-processing-models/', 0, 0, 1, 0, 0, 330, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], ['https://proceedings.neurips.cc/paper/2020/file/6b493230205f780e1bc26945df7481e5-Paper.pdf', 0, 0, 0, 1, 0, 1366, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 62296, 0, 1, 1, 3, 17, 0, 5], ['https://huggingface.co/blog/ray-rag', 0, 0, 0, 1, 0, 773, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5719, 0, 0, 0, 0, 0, 0, 2], ['https://openreview.net/forum?id=FzcZi8I5P2q', 0, 0, 0, 1, 0, 330, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 397, 0, 0, 0, 0, 0, 0, 0]]
+Program is applying to classifier, please wait...
+['https://arxiv.org/abs/2005.11401', 1, 0, 0, 0, 0, 556, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 722, 0, 0, 0, 0, 0, 0, 0]
+['https://ai.facebook.com/blog/retrieval-augmented-generation-streamlining-the-creation-of-intelligent-natural-language-processing-models/', 0, 0, 1, 0, 0, 330, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+['https://proceedings.neurips.cc/paper/2020/file/6b493230205f780e1bc26945df7481e5-Paper.pdf', 0, 0, 0, 1, 0, 1366, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 62296, 0, 1, 1, 3, 17, 0, 5]
+['https://huggingface.co/blog/ray-rag', 0, 0, 0, 1, 0, 773, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5719, 0, 0, 0, 0, 0, 0, 2]
+['https://openreview.net/forum?id=FzcZi8I5P2q', 0, 0, 0, 1, 0, 330, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 397, 0, 0, 0, 0, 0, 0, 0]
+[array([0, 0, 2, 1, 2])]
+
+The outputs are as followed: ['https://proceedings.neurips.cc/paper/2020/file/6b493230205f780e1bc26945df7481e5-Paper.pdf', 'https://openreview.net/forum?id=FzcZi8I5P2q', 'https://huggingface.co/blog/ray-rag', 'https://arxiv.org/abs/2005.11401', 'https://ai.facebook.com/blog/retrieval-augmented-generation-streamlining-the-creation-of-intelligent-natural-language-processing-models/']
+Useful level(larger = better): [2, 2, 1, 0, 0]
